@@ -1,0 +1,33 @@
+version: '3'
+
+networks:
+  dmz:
+    driver: ${NETWORKS_DRIVER}
+
+volumes:
+  sunnycoind:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+  sunnycoind:
+    restart: always
+    build:
+      context: ./sunnycoind
+      args:
+        - GIT_REPOSITORY_URL=${GIT_REPOSITORY_URL}
+    environment:
+      - HARDWARE_AVAILABLE_CPU_CORES=${HARDWARE_AVAILABLE_CPU_CORES}
+    volumes:
+      - ${SUNNYCOIND_DATA_PATH}/sunnycoind:/var/lib/sunnycoind
+      - ${SUNNYCOIND_CONFIG_PATH}:/opt/sun/etc
+      - ${SUNNYCOIND_SSL_PATH}:/opt/sun/etc/ssl
+    ports:
+      - "${SUNNYCOIND_HOST_WS_PORT}:5005"
+      - "${SUNNYCOIND_HOST_PEER_PORT}:51135"
+    networks:
+      - dmz
+    logging:
+      driver: "${LOG_DRIVER}"
+      options:
+        max-size: "${LOG_MAX_SIZE}"
+        max-file: "${LOG_MAX_FILE}"

@@ -1,0 +1,7 @@
+# To use the SUN main network,
+# use the following configuration instead:
+[validator_list_sites]
+https://vl.n-sunnycoin.io
+
+[validator_list_keys]
+ED7DAA08AEC8E4AD0057465A277FA768C786DC9B8DC557E2D4C1545B49A7BAC349

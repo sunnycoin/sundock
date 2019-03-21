@@ -1,0 +1,10 @@
+.env
+sunnycoind/etc/*
+!sunnycoind/etc/mainnw.tracking.example
+!sunnycoind/etc/mainnw.validators.txt
+.idea
+!sunnycoind/etc/ssl
+*.ca
+*.crt
+*.key
+.data
